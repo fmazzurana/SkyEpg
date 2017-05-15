@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="JARS_REPO/giantlib.jar"/>
+	<classpathentry kind="var" path="JARS_REPO/log4j-api-2.7.jar"/>
+	<classpathentry kind="var" path="JARS_REPO/log4j-core-2.7.jar"/>
+	<classpathentry kind="var" path="JARS_REPO/mysql-connector-java-5.1.40-bin.jar"/>
+	<classpathentry kind="var" path="JARS_REPO/jackson-all-1.9.11.jar"/>
+	<classpathentry kind="var" path="JARS_REPO/java-json.jar"/>
+	<classpathentry kind="var" path="JARS_REPO/javax.mail.jar" sourcepath="/JARS_REPO"/>
+	<classpathentry kind="var" path="JARS_REPO/javax.ws.rs.jar"/>
+	<classpathentry kind="var" path="JARS_REPO/jersey-client.jar"/>
+	<classpathentry kind="var" path="JARS_REPO/jersey-core.jar"/>
+	<classpathentry kind="var" path="JARS_REPO/skyepglib.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

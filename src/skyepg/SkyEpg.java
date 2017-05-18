@@ -13,7 +13,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import beans.GenreBean;
 import commons.MyException;
 import commons.Utils;
-import database.DBException;
+import database.DbException;
 import database.EpgDatabase;
 import database.EpgDatabase.GenresEnabled;
 import net.GMail;
@@ -90,7 +90,7 @@ public class SkyEpg {
 			// post: fixes the data
 			db.fixer();
 			
-		} catch (DBException | MyException e) {
+		} catch (DbException | MyException e) {
 			msg = e.getMessage();              result.add(msg); logger.fatal(msg);
 			msg = "curGenre: "   + curGenre;   result.add(msg); logger.error(msg);
 			msg = "curChnName: " + curChnName; result.add(msg); logger.fatal(msg);
@@ -103,7 +103,7 @@ public class SkyEpg {
 			// stores the result into the DB and closes the DB connection
 			try {
 				db.logAdd(myName, result);
-			} catch (DBException e) {
+			} catch (DbException e) {
 				// 'msg' must be leaved unchanged
 				result.add(e.getMessage());
 				logger.fatal(e.getMessage());
@@ -125,7 +125,7 @@ public class SkyEpg {
 	 * @param genre Genre to be processed
 	 * @throws EpgException
 	 */
-	private void processGenre(GenreBean genre) throws DBException {
+	private void processGenre(GenreBean genre) throws DbException {
 		String msg;
 		logger.info(genre.getName());
 		long startTime = System.currentTimeMillis();
@@ -156,7 +156,7 @@ public class SkyEpg {
 	    	} else
 				logger.error("Null json or unable to map it into SkyGenre");
 		} catch (MyException e) {
-			throw new DBException(e.getMessage());
+			throw new DbException(e.getMessage());
 		}
 		logger.info("{} end in {}", genre.getName(), Utils.elapsedTime(startTime));
 	}
@@ -216,15 +216,15 @@ public class SkyEpg {
 			    	} else
 						logger.error("Null json or unable to map it into SkyChannelPlan");
 				} catch (MyException e) {
-					throw new DBException(e.getMessage());
+					throw new DbException(e.getMessage());
 				}
 			}
-		} catch (DBException e) {
+		} catch (DbException e) {
 			logger.error("Unable to get channel image {}", e.getMessage());
 		}
 	}
 	
-	private <T> T jsonMapper(String json, Class<T> mapClass) throws DBException {
+	private <T> T jsonMapper(String json, Class<T> mapClass) throws DbException {
 		if (json == null) {
 			return null;
 		} else {
@@ -232,7 +232,7 @@ public class SkyEpg {
 				ObjectMapper mapper = new ObjectMapper();
 				return mapper.readValue(json, mapClass);
 			} catch (IOException e) {
-				throw new DBException(e.getMessage());
+				throw new DbException(e.getMessage());
 			}
 		}
 	}

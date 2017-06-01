@@ -64,7 +64,7 @@ public class SkyEpg {
 		
 		try {
 			// connects to the DB and gets the parameters
-			db = new EpgDatabase("skyepg.properties");
+			db = new EpgDatabase();
 			db.logAdd(myName, "PROCESS START");
 			dayStart  = db.getParamAsInteger("DAY_START");
 			dayStop   = db.getParamAsInteger("DAY_STOP");
@@ -111,7 +111,7 @@ public class SkyEpg {
 			// sends the result by email
 			try {
 				if (gmail != null)
-					gmail.Send(destMail, myName, result);
+					gmail.Send(destMail, myName, Utils.List2Text(result));
 			} catch (MyException e) {
 				logger.error(e.getMessage());
 			}
